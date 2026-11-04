@@ -1,0 +1,50 @@
+public class MatrixAddition {
+    public static void main(String[] args){
+        if(args.length!=1){
+            System.out.println("Usage:java MatrixAddition<order_N>");
+            return;
+        }
+        int N=Integer.parseInt(args[0]);
+        if(N<=0){
+            System.out.println("please provide a valid positive integer for the order N.");
+            return;
+        }
+        int[][]matrix1=new int[N][N];
+        int[][]matrix2=new int[N][N];
+        fillMatrix(matrix1,1);
+        fillMatrix(matrix2,2);
+        System.out.println("Matrix1: ");
+        printMatrix(matrix1);
+        System.out.println("\nMatrix2: ");
+        printMatrix(matrix2);
+        int[][] resultMatrix = addMatrix(matrix1,matrix2);
+        System.out.println("\nResultant Matrix(Matrix1+Matrix2):");
+        printMatrix(resultMatrix);
+    }
+    private static void fillMatrix(int[][]matrix,int startValue){
+        int value=startValue;
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[i].length;j++){
+                matrix[i][j]=value++;
+            }
+        }
+    }
+    private static int[][]addMatrix(int[][]matrix1,int[][]matrix2){
+        int N= matrix1.length;
+        int[][] resultmatrix=new int[N][N];
+        for(int i=0;i<N;i++){
+            for(int j=0;j<N;j++){
+                resultmatrix[i][j]=matrix1[i][j]+matrix2[i][j];
+            }
+        }
+        return resultmatrix;
+    }
+    private static void printMatrix(int[][] matrix){
+        for(int[] row:matrix){
+            for(int value:row){
+                System.out.println(value+"\t");
+            }
+            System.out.println();
+        }
+    }
+}
